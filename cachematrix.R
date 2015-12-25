@@ -1,15 +1,40 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Those functions may be used to speed up matrix inversion calculations. 
+## Functions are used in pair. 
 
-## Write a short comment describing this function
+## Function cretates a closure to manipulate squeare matrix
+## with cached inverse matix.
 
 makeCacheMatrix <- function(x = matrix()) {
-
+  # Initialize cache
+  solved <- NULL
+  # set and get matrix
+  set <- function(y) {
+    x<<-y
+    solved<<-NULL
+  }
+  get <- function() x
+  # access cached result
+  setsolved <- function(m) solved<<-m
+  getsolved <- function() solved
+  # describes closure
+  list(set=set,get=get,setsolved=setsolved,getsolved=getsolved)
 }
 
 
-## Write a short comment describing this function
-
+## Fuction uses cached closure to speedup large matrices inversion
+##
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  slv <- x$getsolved()
+  # Check if solution has been cached already
+  if (!is.null(slv)) {
+    ## Return  inverse matrix 'x' from cache
+    return(slv)
+  }
+  # No solution cahced.
+  mtx <-x$get()
+  # Inverse data and cache in closure
+  slv<-solve(mtx,...)
+  x$setsolved(slv)
+  # Return result.
+  slv
 }
