@@ -1,7 +1,7 @@
 ## Functions below can be used to speed up matrix inversion calculations. 
 ## They use closures to cache inversion results.
 
-## Function cretates a closure to manipulate squeare matrix
+## Function cretates a closure to manipulate square matrix
 ## with cached inverse matix.
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -21,7 +21,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Fuction uses cached closure to speedup large matrices inversion
+## Fuction uses closure to speedup large matrices inversion
 ##
 cacheSolve <- function(x, ...) {
   slv <- x$getsolved()
