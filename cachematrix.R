@@ -1,5 +1,5 @@
-## Those functions may be used to speed up matrix inversion calculations. 
-## Functions are used in pair. 
+## Functions below can be used to speed up matrix inversion calculations. 
+## They use closures to cache inversion results.
 
 ## Function cretates a closure to manipulate squeare matrix
 ## with cached inverse matix.
